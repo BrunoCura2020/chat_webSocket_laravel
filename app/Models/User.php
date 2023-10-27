@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function chats() {
+        //Se utiliza belongsToMany porque el user esta relacionado con varios chat
+        return $this->belongsToMany('App\Models\Chat');
+    }
+
+    //Se utiliza hasMany porque el usuario tiene muchos mensajes
+    public function messages() {
+        return $this->hasMany('App\Models\Message');
+    }
 }
